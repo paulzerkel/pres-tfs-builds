@@ -1,7 +1,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-.swp
+
+# ignore vim sqp files
+*.swp
 
 # Icon must ends with two \r.
 Icon
