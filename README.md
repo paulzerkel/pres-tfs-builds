@@ -83,9 +83,11 @@ A specific instance of a build which requires:
 	* Sets what folders in source control are participating in the build
 * Build Defaults
 	* Default settings that can be changed when queuing a build such as the controller and output location.
+	* The output location can also be turned off if you won't need the resulting files.
 * Process
 	* Lets you pick the process template and customize the arguments
 	* Pick the sln to build
+	* Pick the platform and configuration (IMPORTANT)
 	* Run unit tests?
 	* Perform code analysis?
 	* Publish symbols
@@ -106,8 +108,11 @@ Built in Features
 	* FxCop can be used via an extention
 * Deployments
 	* Can add MSBuild flags to the compilation step to publish a web app to a location
+* Labeling
+	* The workspace can be labeled on a build
+	* Subsequent builds can target a specific label
 
-Bolt on TFS Activities
+Add-on TFS Activities
 ----------------------
 Assemblies must be checked into source control and the build controller must point to the custom assembly directory.
 
@@ -142,3 +147,54 @@ TFS Extensions has a StyleCop activity that will run stylecop on the source file
 	*	This would fail the build which seems a bit drastic
 	* We treat them as warnings
 
+Example Project Organization
+----------------------------
+The organization of your project within TFS is imporant. The root of a project should be broken up into areas that target different stages 
+of the software lifecycle.
+
+* Development
+	* Individual branches for features or releases under development
+	* Branched from Main
+	*	Give it a name with meaning to the work occuring in it
+* Main
+	* Integration point.
+	* Branch from here to to Development and Release
+	* Merge into main to move changes into Release or Development
+* Release
+	* Individual branches for major/minor releases
+	* Hotfixes can be applied and merged back into Main
+	* Builds target these branches
+
+Continuous Integration Example
+------------------------------
+A continuous integration build will run any time code is checked in. This gives you quick feedback on the state of the codebase.
+
+* Set up email alerts for builds
+	* Team Explorer -> Settings -> Project Alerts
+	* You want to know what is going on
+* Create a build definition for the branch you're working in
+	* Useful to name it CI - Branch
+* Pick Continuous Integration or Rolling Builds for the trigger
+* Run unit tests, code analysis, and style checker
+* Don't copy the output to the drop folder
+	* You don't care too much for the output
+* Turn off labeling
+	* No need to pollute the labels for the project
+
+Release Example
+---------------
+A release build will target a branch in the Release folder. Release builds are intended to be deployed to environments outside of 
+the developer's machines such as Development, QA, and Prodcution.
+
+* Create a build definition for the release branch in question
+* Each build should use a TFS Version task with the Major and Minor values set
+	* This will set the assemblyinfo.cs versions appropriately
+* Set the build targets appropriately
+	* Your project should have a solution config for each environment + local
+	* Probably no need to build the "Debug" or local config
+* Make sure the project has configuration transforms as needed
+	* Especially for web apps, although app.config can be done via Slow Cheetah
+* Label the build
+* Select a reasonable spot on the network to store build results
+* Unit testing, code analysis, and style checking is optional
+	* It should already be good by the time it gets to a release branch

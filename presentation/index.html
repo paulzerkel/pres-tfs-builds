@@ -56,8 +56,10 @@
 
 				<section>
 					<h2>Team Foundation Server</h2>
+					<p>
+						Microsoft’s Application Lifecycle Management solution
+					</p>
 					<ul>
-						<li>Microsoft’s Application Lifecycle Management solution</li>
 						<li>Task Tracking</li>
 						<li>Source Control</li>
 						<li>Bug Tracking</li>
@@ -184,11 +186,12 @@
 						<li>Unit Testing</li>
 						<li>Code Analysis</li>
 						<li>Deployments</li>
+						<li>Labeling</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Bolt on TFS Activities</h2>
+					<h2>Add-on TFS Activities</h2>
 					<p>
 						Assemblies must be checked into source control and the build controller must point to the custom assembly directory.
 					</p>
@@ -217,6 +220,56 @@
 						<li>Can be customized per project</li>
 						<li>Violations can be set as errors</li>
 					</ul>
+				</section>
+
+				<section>
+					<h2>Example Project Organization</h2>
+					<p>
+						The organization of your project within TFS is imporant. The root of a project should be broken up into areas that target different stages 
+						of the software lifecycle.
+					</p>
+					<ul>
+						<li>Development</li>
+						<li>Main</li>
+						<li>Release</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Continuous Integration Example</h2>
+					<p>
+						A continuous integration build will run any time code is checked in. This gives you quick feedback on the state of the codebase.
+					</p>
+					<ul>
+						<li>Set up email alerts for builds</li>
+						<li>Create a build definition for the branch you're working in</li>
+						<li>Pick Continuous Integration or Rolling Builds for the trigger</li>
+						<li>Run unit tests, code analysis, and style checker</li>
+						<li>Don't copy the output to the drop folder</li>
+						<li>Turn off labeling</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Release Example</h2>
+					<p>
+						A release build will target a branch in the Release folder. Release builds are intended to be deployed to environments outside of 
+						the developer's machines such as Development, QA, and Prodcution.
+					</p>
+					<ul>
+						<li>Create a build definition for the release branch in question</li>
+						<li>Each build should use a TFS Version task with the Major and Minor values set</li>
+						<li>Set the build targets appropriately</li>
+						<li>Make sure the project has configuration transforms as needed</li>
+						<li>Label the build</li>
+						<li>Select a reasonable spot on the network to store build results</li>
+						<li>Unit testing, code analysis, and style checking is optional</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<h3 class="fragment roll-in">Thanks!</h3>
 				</section>
 			</div>
 		</div>
