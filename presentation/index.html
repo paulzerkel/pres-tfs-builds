@@ -42,9 +42,6 @@
 						<small>11/21/2013</small>
 					</p>
 
-					<blockquote cite="http://www.codinghorror.com/blog/2006/10/the-build-server-your-projects-heart-monitor.html">
-						the heart monitor of your project -Jeff Atwood
-					</blockquote>
 				</section>
 				
 				<section>
@@ -58,10 +55,168 @@
 				</section>
 
 				<section>
-					<h2>Overview</h2>
+					<h2>Team Foundation Server</h2>
+					<ul>
+						<li>Microsoft’s Application Lifecycle Management solution</li>
+						<li>Task Tracking</li>
+						<li>Source Control</li>
+						<li>Bug Tracking</li>
+						<li>Build Server</li>
+						<li>Deployments</li>
+						<li>Lab Management</li>
+						<li>etc</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>What is a Build Server?</h2>
+					<ul>
+						<li>A service often running on a dedicated machine</li>
+						<li>Handles running build scripts based on an event</li>
+						<li>Often keeps track of build artifacts, retrieves dependencies, logs results, keeps statistics</li>
+					</ul>
+					<br>
+					<br>
+					<blockquote cite="http://www.codinghorror.com/blog/2006/10/the-build-server-your-projects-heart-monitor.html">
+						the heart monitor of your project -Jeff Atwood
+					</blockquote>
+				</section>
+
+				<section>
+					<h2>Examples</h2>
+					<ul>
+						<li>Team Foundation Server</li>
+						<li>Jenkins</li>
+						<li>Hudson</li>
+						<li>Team City</li>
+						<li>CruiseControl.net</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Pros</h2>
+					<ul>
+						<li>Centralized</li>
+						<li>Repeatable</li>
+						<li>Code Health Monitoring</li>
+						<li>Continuous Integration</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Cons</h2>
+					<ul>
+						<li>Requires time to set up early on in the project.</li>
+						<li>Another piece of infrastructure to maintain.</li>
+						<li>Once you get used to automated builds, doing it by hand is a real pain.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Builds in TFS</h2>
 					<p>
-						A build server 
+						Used for automated builds for code stored within Team Foundation System. Components include:
 					</p>
+					<ul>
+						<li>Team Foundation Server</li>
+						<li>Build Server</li>
+						<li>Build Controller</li>
+						<li>Build Agent</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Small Team Infrastructure</h2>
+					<a class="image" href="http://msdn.microsoft.com/en-us/library/dd793166.aspx" target="_blank">
+						<img alt="Small Team Infrastructure Diagram" src="./img/smallteam.png">
+					</a>
+					<br>
+					<small>source: <a href="http://msdn.microsoft.com/en-us/library/dd793166.aspx">MSDN</a></small>
+				</section>
+
+				<section>
+					<h2>Large Team Infrastructure</h2>
+					<a class="image" href="http://msdn.microsoft.com/en-us/library/dd793166.aspx" target="_blank">
+						<img alt="Large Team Infrastructure Diagram" src="./img/largeteam.png">
+					</a>
+					<br>
+					<small>source: <a href="http://msdn.microsoft.com/en-us/library/dd793166.aspx">MSDN</a></small>
+				</section>
+
+				<section>
+					<h2>Visual Studio Online Infrastructure</h2>
+					<a class="image" href="http://msdn.microsoft.com/en-us/library/dd793166.aspx" target="_blank">
+						<img alt="Visual Studio Online Infrastructure Diagram" src="./img/dacloud.png">
+					</a>
+					<br>
+					<small>source: <a href="http://msdn.microsoft.com/en-us/library/dd793166.aspx">MSDN</a></small>
+				</section>
+
+				<section>
+					<h2>Build Process Template</h2>
+					<ul>
+						<li>TFS 2010 moved from a MSBuild based build process to a Windows Workflow based build process</li>
+						<li>The workflows are called Build Process Templates</li>
+						<li>Edit them like a normal workflow</li>
+						<li>Workflows have arguments that can be customized through the build UI as part of the build definition</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Build Definition</h2>
+					<p>	
+						A specific instance of a build which requires:
+					</p>
+					<ul>
+						<li>Name</li>
+						<li>Status</li>
+						<li>Trigger</li>
+						<li>Source Settings</li>
+						<li>Build Defaults</li>
+						<li>Process</li>
+						<li>Retention Policy</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Built in Features</h2>
+					<ul>
+						<li>Unit Testing</li>
+						<li>Code Analysis</li>
+						<li>Deployments</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Bolt on TFS Activities</h2>
+					<p>
+						Assemblies must be checked into source control and the build controller must point to the custom assembly directory.
+					</p>
+					<ul>
+						<li>Build your own</li>
+						<li>Open Source (TFS Extensions)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Versioning</h2>
+					<ul>
+						<li>Need to download and customize the workflow</li>
+						<li>Can set how the version number is constructed</li>
+						<li>Lots of customization available</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>StyleCop</h2>
+					<p>
+						TFS Extensions has a StyleCop activity that will run stylecop on the source files and report back as part of the build process.
+					</p>
+					<ul>
+						<li>Helps enforce consistent code style throughout the project</li>
+						<li>Can be customized per project</li>
+						<li>Violations can be set as errors</li>
+					</ul>
 				</section>
 			</div>
 		</div>

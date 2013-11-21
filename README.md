@@ -1,7 +1,7 @@
 Team Foundation Center Builds
 =================================
 
-This is a lunch presentation on using Team Foundation Server as a build server.
+This is a lunch presentation on using Team Foundation Server as a build server. Notes for the presentation are below.
 
 Team Foundation Server
 ----------------------
@@ -11,7 +11,7 @@ Team Foundation Server
 What is a build server?
 -----------------------
 * A service often running on a dedicated machine
-* Handles running build scripts when requested
+* Handles running build scripts based on an event
 * Often keeps track of build artifacts, retrieves dependencies, logs results, keeps statistics
 
 Examples
@@ -25,7 +25,7 @@ Examples
 
 Build Server Pros
 -----------------
-* Consistent
+* Centralized
 	* Always building from one place and avoids building off a person’s machine.. Same process every time. Always pulling files out of source control (no “oops! that made it into prod without being checked in)
 * Repeatable
 	* The process is scripted and can be kicked off with one click. No chance of missing a step in a run. Can be run often without taking up anyone’s time.
@@ -42,9 +42,9 @@ Build Server Cons
 
 Builds in TFS
 -------------
-Used for automated builds for code stored within Team Foundation System
+Used for automated builds for code stored within Team Foundation System.
 
-Components include
+Components include:
 * Team Foundation Server
 	* Application Tier. The general TFS install is the entry point for recieving build requests.
 * Build Server
@@ -96,6 +96,11 @@ A specific instance of a build which requires:
 
 Built in Features
 -----------------
+* Unit testing
+	* Can match assemblies based on wildcards
+	* Built in it will execute MSTests
+	* Adaptors allow 3rd party frameworks like NUnit
+	* Results of tests included with build
 * Code Analysis
 	* Code analysis uses the FxCop engine. Very similar in nature
 	* FxCop can be used via an extention
