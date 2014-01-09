@@ -184,7 +184,7 @@ A continuous integration build will run any time code is checked in. This gives 
 Release Example
 ---------------
 A release build will target a branch in the Release folder. Release builds are intended to be deployed to environments outside of 
-the developer's machines such as Development, QA, and Prodcution.
+the developer's machines such as Development, QA, and Production.
 
 * Create a build definition for the release branch in question
 * Each build should use a TFS Version task with the Major and Minor values set
