@@ -1,6 +1,10 @@
 Team Foundation Center Builds
 =================================
 
+NOTE
+----
+This presentation is probably out of date.
+
 This is a lunch presentation on using Team Foundation Server as a build server. Notes for the presentation are below.
 
 Team Foundation Server
