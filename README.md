@@ -1,25 +1,27 @@
-Team Foundation Center Builds
-=================================
-
-NOTE
-----
-This presentation is probably out of date.
-
+# Team Foundation Center Builds
 This is a lunch presentation on using Team Foundation Server as a build server. Notes for the presentation are below.
 
-Team Foundation Server
-----------------------
+## Caution!
+This presentation is probably out of date.
+
+## Overview
+The presentation is built with [Reveal.js](https://github.com/hakimel/reveal.js) and hosted on GitHub Pages: http://paulzerkel.github.io/pres-tfs-builds/
+
+Edit the root `index.html` file to change the presentation. All of the files for Reveal.js are in `/reveal`. The gh-pages branch contains the live site.
+
+## Notes
+Check out these presentation notes!
+
+### Team Foundation Server
 * Microsoft’s Application Lifecycle Management solution
 * Includes task tracking, source control, bug tracking, build server, deployments, lab management, etc
 
-What is a build server?
------------------------
+### What is a build server?
 * A service often running on a dedicated machine
 * Handles running build scripts based on an event
 * Often keeps track of build artifacts, retrieves dependencies, logs results, keeps statistics
 
-Examples
---------
+### Examples
 * Team Foundation Server
 * Jenkins
 * Hudson
@@ -27,8 +29,7 @@ Examples
 * CruiseControl.net
 * Many more
 
-Build Server Pros
------------------
+### Build Server Pros
 * Centralized
 	* Always building from one place and avoids building off a person’s machine.. Same process every time. Always pulling files out of source control (no “oops! that made it into prod without being checked in)
 * Repeatable
@@ -38,14 +39,12 @@ Build Server Pros
 * Continuous Integration
 	* Build after every commit to make sure all developer’s changes compile together. Constantly getting feedback on the code health monitoring.
 
-Build Server Cons
------------------
+### Build Server Cons
 * Requires time to set up early on in the project.
 * Another piece of infrastructure to maintain.
 * Once you get used to automated builds, doing it by hand is a real pain.
 
-Builds in TFS
--------------
+### Builds in TFS
 Used for automated builds for code stored within Team Foundation System.
 
 Components include:
@@ -58,12 +57,10 @@ Components include:
 * Build Agent
 	* Dedicated to a single build controller. Processor and storage intensive. Can be tagged based on capabilities, IIS, x86, x64, etc.
 
-Infrastructure Examples
------------------------
+### Infrastructure Examples
 NA
 
-Build Process Template
-----------------------
+### Build Process Template
 * TFS 2010 moved from a MSBuild based build process to a Windows Workflow based build process.
 	* Workflows can call out to MSBuild scripts
 * The workflows are called Build Process Templates
@@ -75,8 +72,7 @@ Build Process Template
 	* TFS Extensions on codeplex has a lot of great ones (also supported by hosted build)
 * Workflows have arguments that can be customized through the build UI as part of the build definition
 
-Build Definition
-----------------
+### Build Definition
 A specific instance of a build which requires:
 * Name
 * Status
@@ -100,8 +96,7 @@ A specific instance of a build which requires:
 	* Can be set based on build result 
 	* You can set what should be deleted after the retention policy is triggered
 
-Built in Features
------------------
+### Built in Features
 * Unit testing
 	* Can match assemblies based on wildcards
 	* Built in it will execute MSTests
@@ -116,8 +111,7 @@ Built in Features
 	* The workspace can be labeled on a build
 	* Subsequent builds can target a specific label
 
-Add-on TFS Activities
-----------------------
+### Add-on TFS Activities
 Assemblies must be checked into source control and the build controller must point to the custom assembly directory.
 
 * Build your own
@@ -131,8 +125,7 @@ Assemblies must be checked into source control and the build controller must poi
 	* Zip
 	* etc
 
-Versioning
-----------
+### Versioning
 TFS Extensions has a TFSVersion to help set the assemblyinfo.cs versions when building a project.
 
 * Need to download and customize the workflow to do that
@@ -140,8 +133,7 @@ TFS Extensions has a TFSVersion to help set the assemblyinfo.cs versions when bu
 * Lots of customization available
 	* Confusing and a little error prone
 
-StyleCop
---------
+### StyleCop
 TFS Extensions has a StyleCop activity that will run stylecop on the source files and report back as part of the build process.
 
 * Helps enforce consistent code style throughout the project
@@ -151,8 +143,7 @@ TFS Extensions has a StyleCop activity that will run stylecop on the source file
 	*	This would fail the build which seems a bit drastic
 	* We treat them as warnings
 
-Example Project Organization
-----------------------------
+### Example Project Organization
 The organization of your project within TFS is imporant. The root of a project should be broken up into areas that target different stages 
 of the software lifecycle.
 
@@ -169,8 +160,7 @@ of the software lifecycle.
 	* Hotfixes can be applied and merged back into Main
 	* Builds target these branches
 
-Continuous Integration Example
-------------------------------
+### Continuous Integration Example
 A continuous integration build will run any time code is checked in. This gives you quick feedback on the state of the codebase.
 
 * Set up email alerts for builds
@@ -185,8 +175,7 @@ A continuous integration build will run any time code is checked in. This gives 
 * Turn off labeling
 	* No need to pollute the labels for the project
 
-Release Example
----------------
+### Release Example
 A release build will target a branch in the Release folder. Release builds are intended to be deployed to environments outside of 
 the developer's machines such as Development, QA, and Production.
 
